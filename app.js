@@ -8,6 +8,8 @@ const paper= document.getElementsByClassName('paperBtn');
 const scissor= document.getElementsByClassName('scissorBtn');
 const left=document.getElementsByClassName('left');
 const resul=document.getElementsByClassName('result');
+const hidden=document.getElementsByClassName('hidden');
+const button=document.getElementsByClassName('btn');
 
 function compChoice(){
 let choices=["r","p","s"];
@@ -23,6 +25,7 @@ left[0].innerHTML=move;
 resul[0].innerHTML="WIN";
 if(move==0)
 {
+    hidden[0].style.visibility="visible";
     if(coms>mscore)
         {
             resul[0].innerHTML="Computer won";
@@ -45,7 +48,7 @@ compscore[0].textContent=coms;
 left[0].innerHTML=move;
 resul[0].innerHTML="LOSE";
 if(move==0)
-{
+{      hidden[0].style.visibility="visible";
     if(coms>mscore)
         {
             resul[0].innerHTML="Computer won";
@@ -67,6 +70,7 @@ left[0].innerHTML=move;
 resul[0].innerHTML="TIE";
 if(move==0)
 {
+    hidden[0].style.visibility="visible";
     if(coms>mscore)
         {
             resul[0].innerHTML="Computer won";
@@ -80,6 +84,19 @@ if(move==0)
             resul[0].innerHTML="Game Tied";
         }
 }
+}
+
+function gameOver()
+{
+    coms=0;
+    mscore=0;
+    move=10;
+    compscore[0].textContent=coms;
+    myscore[0].textContent=mscore;
+    left[0].innerHTML=move;
+    resul[0].innerHTML="";
+    hidden[0].style.visibility="hidden";
+
 }
 
 function game(userChoice){
@@ -109,4 +126,6 @@ function game(userChoice){
 stone[0].addEventListener("click",()=>{game("r");})
 paper[0].addEventListener("click",()=>{game("p");})
 scissor[0].addEventListener("click",()=>{game("s");})
+button[0].addEventListener("click",gameOver)
+
 
